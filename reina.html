@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Para Mi Novia</title>
+    <style>
+        body {
+            margin: 0;
+            overflow: hidden;
+            background-color: rgb(250, 162, 177);
+            font-family: 'Arial', sans-serif;
+        }
+        #contenedor {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            text-align: center;
+        }
+        #mensaje {
+            color: rgb(97, 235, 245);
+            font-size: 3em;
+            font-weight: bold;
+            text-shadow: 2px 2px 8px #ff66b2;
+            animation: resaltar 1.5s infinite alternate;
+        }
+        #imagen-central {
+            margin-top: 20px;
+            max-width: 300px;
+            border-radius: 15px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        }
+        .corazon {
+            position: absolute;
+            color: red;
+            font-size: 24px;
+            animation: flotar 4s linear infinite;
+        }
+        @keyframes flotar {
+            0% { transform: translateY(100vh) translateX(0); opacity: 1; }
+            100% { transform: translateY(-10vh) translateX(calc(-50px + 100px * 2 * (random() - 0.5))); opacity: 0; }
+        }
+        @keyframes resaltar {
+            from { transform: scale(1); }
+            to { transform: scale(1.1); }
+        }
+    </style>
+</head>
+<body>
+    <div id="contenedor">
+        <div id="mensaje">Te Amo Mucho, Mi Reina ❤️</div>
+        <img id="imagen-central" src="amor.jpeg" alt="Nuestra Foto Juntos">
+    </div>
+
+    <audio id="miAudio" loop>
+        <source src="mon Amour.mp3" type="audio/mpeg">
+        Tu navegador no soporta el elemento de audio.
+    </audio>
+
+    <button id="btnPlay" style="position: absolute; top: 20px; left: 20px;">Reproducir Música</button>
+
+    <script>
+        function crearCorazon() {
+            const corazon = document.createElement('div');
+            corazon.classList.add('corazon');
+            corazon.textContent = '❤️';
+            corazon.style.left = Math.random() * window.innerWidth + 'px';
+            corazon.style.animationDuration = 2 + Math.random() * 3 + 's';
+            document.body.appendChild(corazon);
+
+            setTimeout(() => corazon.remove(), 5000);
+        }
+
+        setInterval(crearCorazon, 300);
+
+        // Controlar reproducción manual por políticas de móviles
+        const audio = document.getElementById('miAudio');
+        const btnPlay = document.getElementById('btnPlay');
+        btnPlay.addEventListener('click', () => {
+            audio.play();
+            btnPlay.style.display = 'none'; // Oculta el botón tras iniciar la música
+        });
+    </script>
+</body>
+</html>
